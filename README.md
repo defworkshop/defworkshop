@@ -1,11 +1,18 @@
-# workshop-tasks-implemented
+# Defworkshop
 
-We'll break people down to groups of 2-3 people, all practical tasks will be done in groups.
+These are materials for the Clojure Workshop.
 
-Passwords examples:
-http://downloads.skullsecurity.org/passwords/hotmail.txt.bz2
+Please fork the repo, and enjoy the show!
 
-## Simple Functions
+Run `lein marg` and open `docs/uberdoc.html` in your browser to view contents.
+
+Implement functions, and have lots of FN!
+
+# Concepts
+
+Tasks are broken down into groups:
+
+### Simple Functions
 
   * prefix notation
   * anonymous functions
@@ -14,13 +21,11 @@ http://downloads.skullsecurity.org/passwords/hotmail.txt.bz2
   * multiple-arity functions
   * language primitives (keywords, symbols
   * simple destructuring patterns
-
-## Basic programming concepts
-
   * concept of let
   * conditionals
+  * usage of closures
 
-## Data Structures
+### Data Structures
 
   * vectors, lists, sets, maps
   * sequential and associative DSs
@@ -28,45 +33,38 @@ http://downloads.skullsecurity.org/passwords/hotmail.txt.bz2
   * adding/removing values to/from list
   * updating
 
-## Working with sequences
+### Working with sequences
 
   * basic sequence operations (map, reduce, filter, remove)
   * combining sequence operations
   * for/doseq for eager list manipulation and side-effects
-
-## State to recursion
-
   * how to use recursion instead of state
 
-## Destructuring
+### Destructuring
 
   * how to use map destructuring
   * how to use list destructuring
 
-## Java Interop
+### Java Interop
 
   * how to generate a java class
   * how to create an Jar entrypoint
   * reify, proxy
 
-## Macros
+### Macros
 
   * macros basics
   * delayed evaluation
 
-## Software Transactional Memory
+### Software Transactional Memory
 
   * basic STM concepts
   * how to mutate an STM variable
 
-## Concurrency
+### Concurrency
 
   * futures
   * launching threads
-
-## Let Over Lambda
-
-  * usage of closures
 
 ## Multimethods
 
@@ -80,6 +78,10 @@ http://downloads.skullsecurity.org/passwords/hotmail.txt.bz2
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2012-2014 Clojure Workshop Team: Maximilian Karasz, Jan Stępień, Marek Kubica, Oleksandr Petrov
 
-Distributed under the Eclipse Public License, the same as Clojure.
+Commercial use of complete work or parts of work is not allowed to anyone except for Clojure Workshop Team at whole or in parts.
+
+Licensed under Creative Commons Attribution-NonCommercial 3.0: http://creativecommons.org/licenses/by-nc/3.0/
+
+When using complete work or parts of work, explicit attribution is required.
