@@ -26,10 +26,6 @@
   (is (= "STRING." (str-to-upper "string.")))
   (is (= "STRING." (str-to-upper "STRING."))))
 
-(deftest str-to-upper-test
-  (is (= "STRING." (str-to-upper-with-typehint "string.")))
-  (is (thrown? java.lang.ClassCastException (str-to-upper-with-typehint 1))))
-
 (deftest str-to-upper-char-test
   (is (= \S (str-to-upper-char "STRING.")))
   (is (= \S (str-to-upper-char "string."))))

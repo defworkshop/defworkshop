@@ -39,11 +39,6 @@
   [s]
   (…))
 
-(defn ^:not-implemented str-to-upper-with-typehint
-  "Add a typehint to the previous function now. `s` can only be ^java.lang.String"
-  [^java.lang.String s]
-  (…))
-
 (defn ^:not-implemented str-to-upper-char
   "given a String s, convert it to uppercase and return the first character."
   [s]
