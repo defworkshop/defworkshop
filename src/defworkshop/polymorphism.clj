@@ -2,63 +2,38 @@
   (:require [workshoplib.tdd :refer […]]))
 
 ;;
-;; ## Message logging
+;; ## Shapes
 ;;
-;; Let's implement multimethod-based logging system, that will match on the message itself,
-;; and figure out which logger to use.
-;;
-;; Messages themselves will look pretty much like:
-;;
-;;        {:type :init :from 1 :to 2}
-;;
-;; We will determine type of the message (and corresponding logger) based on `:type` key of the
-;; message.
 
-(defmulti log (fn [_] (…)))
+(defmulti area :shape)
 
-;; If the type is `:init`, use string format of
-;;
-;;      "Host <:from> initiating conversation with host <:to>".
-;;
-;; Payload example:
-;;
-;;      {:type :init :from 1 :to 2}
-;;
-(defmethod log :init [{from :from to :to}]
-  …)
-
-;; If the type is `:message`, use string format of
-;;
-;;      "Host <:from> to host <:to>: <:message>"
-;;
-;; Payload example:
-;;
-;;      {:type :message :from 3 :to 4 :message "hello"}
-;;
-(defmethod log :message [_]
+;; Reactangle area is calculated by multiplying height by width
+(defmethod area :rectangle
+  [rectangle]
   (…))
 
-;; If the type is `:file`, use format of
-;;
-;;      "Host <:from> sending <:filename> to host <:to>"
-;;
-;; Payload example:
-;;
-;;      {:type :file :from 5 :to 6 :file {:name "image.jpg" :payload ""}}
-;;
-(defmethod log :file [_]
+;; Circule radius is calculated by Pi * r^2
+;; You can use Pi from `Math/PI`
+(defmethod area :circle
+  [c]
   (…))
 
-;; If the type is `:end`, use format of
-;;
-;;      "Host <from> closed the conversation with host <to>"
-;;
-;; Payload example:
-;;
-;;       {:type :end :from 7 :to 8}
-;;
-(defmethod log :end [_]
-  (…))
+(defn make-rectangle
+  "Factory method for rectangle"
+  [width height]
+  {:shape :rectangle
+   :width width
+   :height height})
+
+(defn make-circle
+  "Factory function for circle"
+  [radius] {:shape :circle
+            :radius radius})
+
+
+
+
+
 
 ;; ## Bounded queue
 ;;
@@ -97,82 +72,39 @@
 (defmethod dequeue :default [queue]
   [(first queue) (…)])
 
-;; ## Router
-;; Router matches a given route and calls a corresponding handler, depending on which method
-;; is called.
-
-;; Route multimethod extracts
-(defmulti route (fn [_] (…)))
-;; Alternative implementation of the same method would look like
-;;
-;;     (defmulti route (fn [request]
-;;                        [(:uri request) (:method request)]))
-;;
-;; So it basically returns an array of `:uri` and `:method` from the given request
 
 
-;; When the we match `["/users" :get]`, return:
-;;
-;;    "Listing all users"
-;;
-(defmethod route ["/users" :get] [_]
-  "Listing all users")
 
-;; When the we match `["/users" :post]`, return
-;;
-;;     "Creating user"
-;;
-(defmethod route ["/users" :post] [_]
-  "Creating user")
+;; ## Factorial
 
-;; When the we match `["/users" :put]`, return
-;;
-;;     "Updating user <id>"
-;;
-(defmethod route ["/users" :put] [{{id :id} :params}]
-  (str "Updating user " id))
+;; Implementing factorial using multimethods Note that factorial-like function
+;; is best implemented using `recur` for enable tail-call optimization to avoid
+;; stack overflow error. This is a only a demonstration of clojure's multimethod
 
-;; When the we match `["/users" :delete]`, return
-;;
-;;     "Deleting user <:id>"
-;;
-(defmethod route ["/users" :delete] [{{id :id} :params}]
-  (str "Deleting user " id))
+;; identity form returns the same value passed
+(defmulti factorial …)
 
-;; When the we match `["/items" :get]`, return
-;;
-;;     "Listing all items"
-;;
-(defmethod route ["/items" :get] [_]
-  "Listing all items")
+(defmethod factorial 0 [_] (…))
 
-;; When the we match `["/items" :post]`, return
-;;
-;;     "Creating user"
-;;
-(defmethod route ["/items" :post] [_]
-  "Creating item")
+(defmethod factorial :default
+  [num]
+  (…))
 
-;; When the we match `["/items" :put]`, return
-;;
-;;      "Updating item <:id>"
-;;
-(defmethod route ["/items" :put] [{{id :id} :params}]
-  (str "Updating item " id))
+(comment
+  (factorial 0)
+  ;;=> 1
+  (factorial 1)
+  ;;=> 1
+  (factorial 3)
+  ;;=> 6
+  (factorial 7)
+  ;;=> 5040
+  )
 
-;; When the we match `["/users" :post]`, return
-;;
-;;     "Deleting item <:id>"
-;;
-(defmethod route ["/items" :delete] [{{id :id} :params}]
-  (str "Deleting item " id))
 
-;; Otherwise, just return
-;;
-;;     "Not found"
-;;
-(defmethod route :default [_]
-  "Not found")
+
+
+
 
 ;; ## Beverages
 ;; Having a `Beverage` protocol, implement a function `serve` that describes a
@@ -191,6 +123,13 @@
 (def beer  (serve 0.05 0.0 0.15))
 (def wine  (serve 0.15 0.1 0.02))
 (def vodka (serve 0.4 0.0 0.0))
+
+
+
+
+
+
+
 
 ;; ## Configuration
 (defn env-param

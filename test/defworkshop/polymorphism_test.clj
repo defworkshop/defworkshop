@@ -3,15 +3,9 @@
             [clojure.test :refer [testing]]
             [workshoplib.tdd :refer [deftest is]]))
 
-(deftest message-logging-test
-  (is (= "Host 1 initiating conversation with host 2"
-         (log {:type :init :from 1 :to 2})))
-  (is (= "Host 3 to host 4: hello"
-         (log {:type :message :from 3 :to 4 :message "hello"})))
-  (is (= "Host 5 sending image.jpg to host 6"
-         (log {:type :file :from 5 :to 6 :file {:name "image.jpg" :payload ""}})))
-  (is (= "Host 7 closed the conversation with host 8"
-         (log {:type :end :from 7 :to 8}))))
+(deftest area-test
+  (is (= 452 (Math/round (area (make-circle 12)))))
+  (is (= 52 (area (make-rectangle 4 13)))))
 
 (deftest bounded-queue-enqueue-test
   (is (= [1] (enqueue [] 1)))
@@ -23,20 +17,11 @@
   (is (= [1 [2 3 4]] (dequeue [1 2 3 4])))
   (is (= [1 [2 3 4 5 6 7 8 9 10] (dequeue [1 2 3 4 5 6 7 8 9 10])])))
 
-(deftest user-routes-test
-  (is (= "Listing all users" (route {:uri "/users" :method :get})))
-  (is (= "Creating user" (route {:uri "/users" :method :post})))
-  (is (= "Updating user 1" (route {:uri "/users" :method :put :params {:id 1}})))
-  (is (= "Deleting user 1" (route {:uri "/users" :method :delete :params {:id 1}}))))
-
-(deftest item-routes-test
-  (is (= "Listing all items" (route {:uri "/items" :method :get})))
-  (is (= "Creating item" (route {:uri "/items" :method :post})))
-  (is (= "Updating item 1" (route {:uri "/items" :method :put :params {:id 1}})))
-  (is (= "Deleting item 1" (route {:uri "/items" :method :delete :params {:id 1}}))))
-
-(deftest not-found-routes-test
-  (is (= "Not found" (route {:route "/test" :method :get}))))
+(deftest factorial-test
+  (is (= 1 (factorial 0)))
+  (is (= 1 (factorial 1)))
+  (is (= 6 (factorial 3)))
+  (is (= 5040 (factorial 7))))
 
 (deftest serve-test
   (testing "water"
