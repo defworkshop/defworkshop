@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [workshoplib "1.0.0"]
+                 [workshoplib "1.0.2"]
  		 [lein-light-nrepl "0.0.7"]]
   :aot [workshoplib.tdd
         defworkshop.java-interop]
