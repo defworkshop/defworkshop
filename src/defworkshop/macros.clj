@@ -31,7 +31,9 @@
 (defmacro ^:not-implemented call
   "As simple as macro can get.
    Write a macro that receives a symbol `sym` and param `x`, and turns it to the function call."
-  [sym & params] …)
+  [sym & params]
+  ;; …
+  )
 
 ;; When is a simple control structure you can implement in terms of macro. It utilizes bootstrapped `if`
 ;; internally and makes it possible to write multi-line expressions.
@@ -43,14 +45,16 @@
   "Think of `when` in terms of macro for a second. In essence, what we need to do is to write a
    macro that would return us (if (test) (do <body>)). There're several ways of implementing it, check them out."
   [test & body]
-  …)
+  ;; …
+  )
 
 ;; Unless macro simply negates `if` conditions
 
 (defmacro ^:not-implemented unless
   "Similar to if but negates the condition"
   [condition & forms]
-  …)
+  ;; …
+  )
 
 ;;
 ;; ## Context-depending evaluation
@@ -67,11 +71,13 @@
   "Write a macro that will set *DEBUG* to true, by using `binding`, and splice-unqote the body, so that body would
    be executed in the context of binding."
   [& body]
-  …)
+  ;; …
+  )
 
-(defn debug
+(defn ^:not-implemented debug
   [& all]
-  …)
+  ;; …
+  )
 
 ;;
 ;; ## DSL / Code Simplification
@@ -98,9 +104,13 @@
    Just fill out the blanks (second fn implementation is missing)"
   ([x] x)
 
-  ([x form] …)
+  ([x form]
+     ;; …
+     )
 
-  ([x form & more] …))
+  ([x form & more]
+     ;; …
+     ))
 
 ;;
 ;; ## Injecting concerns
@@ -117,7 +127,8 @@
   "Write a macro that executes `body`, makes `latch` binding available within complete macro and
    waits for latch after the body"
   [countdown-from & body]
-  …)
+  ;; …
+  )
 
 ;; Let is one of the first macros people learn to write in Lisps, it generates a function and makes context
 ;; bindings available for the function.
@@ -144,7 +155,8 @@
           1 2)
   "
   [bindings & body]
-  …)
+  ;; …
+  )
 
 
 ;;
@@ -165,7 +177,8 @@
   ([] nil)
   ([x] x)
   ([x & next]
-     …))
+     ;; …
+     ))
 
 ;;
 ;; Macros can be also used to cache some results (think of it, you can even do I/O operations
