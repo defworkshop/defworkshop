@@ -146,12 +146,12 @@
    `env-param` (\"PORT\" for port and \"APP_NAME\" for app-name)"
   []
   (reify Configuration
-    (port [_] (env-param "PORT"))
-    (app-name [_] (env-param "APP_NAME"))))
+    (port [_] (…))
+    (app-name [_] (…))))
 
 (defn ^:not-implemented configuration-from-map [configuration]
   "Returns a version of `Confirmation` that looks up `port` and `app-name` from the given
    `configuration` hash."
   (reify Configuration
-    (port [_] (:port configuration))
-    (app-name [_] (:app-name configuration))))
+    (port [_] (…))
+    (app-name [_] (…))))
